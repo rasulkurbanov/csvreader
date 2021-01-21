@@ -1,39 +1,42 @@
 const fs = require('fs')
 const path = require('path')
 const csv = require('fast-csv')
+const parse = require('papaparse')
+const Papa = require('papaparse')
 
-
-let data1 = [];
 
 function readcsv(csvfile) {
 
-  fs.createReadStream(path.resolve(__dirname, 'assets', `${csvfile}`))
-    .pipe(csv.parse({ headers: true }))
+  fs.readFile(`${__dirname}/assets/${csvfile}`, 'utf-8', async(err, csv) => {
+    if(err) {
+      return console.log(err)
+    }
 
-    .on('error', (error) => console.log(error))
+    let data = Papa.parse(csv, {header: true}).data
 
-    .on('data', (row) =>  {
-      data1.push(row)
-    })
-    .on('end', (rowCount) => console.log(`Parsed ${rowCount} rows`))
+    let total = data.length
+
+    console.log(data)
+    console.log(total)
+
+    for(let i of data) {
+
+      fs.appendFile(`${__dirname}/assets/differ.txt`, JSON.stringify(data), async(err, csv) => {
+        if(err) {
+          return console.log(err)
+        }
+      })
+      // console.log(JSON.stringify(i))
+    }
+
+  })
 }
-
-// setTimeout(() => {
-//   console.log(data1)
-// }, 2000);
 
 
 function comparecsv(download) {
-  readcsv('answers.csv')
-  
-  setTimeout(() => {
-      console.log(`Student's answer`)
-      readcsv(download)
-    }, 500); 
-  }
+  readcsv(download)
+}
   
   comparecsv('download.csv')
+  // comparecsv('answers.csv')
   
-
-
-
