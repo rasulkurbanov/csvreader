@@ -1,0 +1,26 @@
+{
+  "name": "csv-file-reader",
+  "version": "1.0.0",
+  "description": "It parses *.csv files and compares ",
+  "main": "server.js",
+  "dependencies": {
+    "fast-csv": "^4.3.6",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "start ",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasulkurbanov/csvreader.git"
+  },
+  "author": "Rasuljon Kurbanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rasulkurbanov/csvreader/issues"
+  },
+  "homepage": "https://github.com/rasulkurbanov/csvreader#readme"
+}
