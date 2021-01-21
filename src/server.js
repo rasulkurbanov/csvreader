@@ -5,38 +5,39 @@ const parse = require('papaparse')
 const Papa = require('papaparse')
 
 
-function readcsv(csvfile) {
+// function readcsv(csvfile) {
+//   fs.readFile(`${__dirname}/assets/${csvfile}`, 'utf-8', async (err, csv) => {
+//     if (err) {
+//       return console.log(err)
+//     }
 
-  fs.readFile(`${__dirname}/assets/${csvfile}`, 'utf-8', async(err, csv) => {
-    if(err) {
+//     let data = Papa.parse(csv, { header: true }).data
+//     let total = data.length
+
+//     console.log(data)
+//     return data
+//     console.log(total)
+//   })
+// }
+
+
+function comparecsv(csvfile) {
+  // readcsv(download)
+  fs.readFileSync(`${__dirname}/assets/${csvfile}`, 'utf-8', (err, csv) => {
+    if (err) {
       return console.log(err)
     }
 
-    let data = Papa.parse(csv, {header: true}).data
+    return Papa.parse(csv, { header: true }).data
+    // let total = data.length
 
-    let total = data.length
-
-    console.log(data)
-    console.log(total)
-
-    for(let i of data) {
-
-      fs.appendFile(`${__dirname}/assets/differ.txt`, JSON.stringify(data), async(err, csv) => {
-        if(err) {
-          return console.log(err)
-        }
-      })
-      // console.log(JSON.stringify(i))
-    }
-
+    // return data
   })
+
 }
 
 
-function comparecsv(download) {
-  readcsv(download)
-}
-  
-  comparecsv('download.csv')
-  // comparecsv('answers.csv')
-  
+console.log(comparecsv('download.csv'))
+console.log(comparecsv('answers.csv'))
+
+
