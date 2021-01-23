@@ -6,6 +6,8 @@
   "dependencies": {
     "fast-csv": "^4.3.6",
     "fs": "^0.0.1-security",
+    "node-addon-api": "^3.1.0",
+    "node-gyp": "^7.1.2",
     "papaparse": "^5.3.0",
     "path": "^0.12.7"
   },
